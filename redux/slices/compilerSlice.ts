@@ -7,6 +7,10 @@ export interface CompilerSliceStateType {
         css: string;
         javascript: string;
     };
+    config: {
+        html: string;
+        javascript: string;
+    };
     currentLanguage: "html" | "css" | "javascript";
 }
 
@@ -61,6 +65,10 @@ const initialState: CompilerSliceStateType = {
   
     `,
     },
+    config: {
+        html: "",
+        javascript: "",
+    },
     currentLanguage: "html",
 };
 
@@ -83,9 +91,15 @@ const compilerSlice = createSlice({
         ) => {
             state.fullCode = action.payload;
         },
+        updateConfig: (
+            state,
+            action: PayloadAction<CompilerSliceStateType["config"]>
+        ) => {
+            state.config = action.payload;
+        },
     },
 });
 
 export default compilerSlice.reducer;
-export const { updateCurrentLanguage, updateCodeValue, updateFullCode } =
+export const { updateCurrentLanguage, updateCodeValue, updateFullCode, updateConfig } =
     compilerSlice.actions;

@@ -1,7 +1,8 @@
+import StoreProvider from "@/app/StoreProvider";
 import { ThemeProvider } from "@/components/theme-provider";
 import type { Metadata } from "next";
 import { Nunito } from 'next/font/google';
-import StoreProvider from "./StoreProvider";
+import NextTopLoader from 'nextjs-toploader';
 import "./globals.css";
 
 const nunito = Nunito({ subsets: ['latin'] })
@@ -20,6 +21,9 @@ export default function RootLayout({
     <>
       <html lang="en" suppressHydrationWarning>
         <body className={nunito.className}>
+          <NextTopLoader
+            color="#D70040"
+          />
           <StoreProvider>
             <ThemeProvider
               defaultTheme="dark"

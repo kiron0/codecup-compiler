@@ -11,7 +11,6 @@ import {
           DialogTrigger
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { cssConfigSchema } from "@/lib/schema/cssConfig.schema"
 import { htmlConfigSchema } from "@/lib/schema/htmlConfig.schema"
 import { jsConfigSchema } from "@/lib/schema/jsConfig.schema"
 import { ReactNode } from "react"
@@ -30,28 +29,18 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                   </DialogDescription>
                                         </DialogHeader>
                                         <Tabs defaultValue="html" className="w-full">
-                                                  <TabsList className="w-full grid grid-cols-3">
+                                                  <TabsList className="w-full grid grid-cols-2">
                                                             <TabsTrigger value="html">HTML</TabsTrigger>
-                                                            <TabsTrigger value="css">CSS</TabsTrigger>
                                                             <TabsTrigger value="javascript">JavaScript</TabsTrigger>
                                                   </TabsList>
                                                   <TabsContent value="html" className="mt-5">
                                                             <Card className="p-4">
                                                                       <ConfigForm
                                                                                 schema={htmlConfigSchema}
-                                                                                fieldName="htmlConfig"
+                                                                                fieldName="html"
                                                                                 label="Your HTML Config/CDN"
+                                                                                subtitle="This will be added to the head of your HTML file."
                                                                                 placeholder="Input HTML config/CDN"
-                                                                      />
-                                                            </Card>
-                                                  </TabsContent>
-                                                  <TabsContent value="css" className="mt-5">
-                                                            <Card className="p-4">
-                                                                      <ConfigForm
-                                                                                schema={cssConfigSchema}
-                                                                                fieldName="cssConfig"
-                                                                                label="Your CSS Config/CDN"
-                                                                                placeholder="Input CSS config/CDN"
                                                                       />
                                                             </Card>
                                                   </TabsContent>
@@ -59,8 +48,9 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                             <Card className="p-4">
                                                                       <ConfigForm
                                                                                 schema={jsConfigSchema}
-                                                                                fieldName="jsConfig"
+                                                                                fieldName="javascript"
                                                                                 label="Your JavaScript Config/CDN"
+                                                                                subtitle="This will be added after the body of your HTML file."
                                                                                 placeholder="Input JavaScript config/CDN"
                                                                       />
                                                             </Card>

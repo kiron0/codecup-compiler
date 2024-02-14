@@ -1,5 +1,6 @@
 "use client"
 
+import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { updateCodeValue } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
 import { tags as t } from "@lezer/highlight";
@@ -7,18 +8,18 @@ import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { draculaInit } from "@uiw/codemirror-theme-dracula";
 import CodeMirror from "@uiw/react-codemirror";
 import { useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 export default function CodeEditor() {
-  const currentLanguage = useSelector(
+  const dispatch = useAppDispatch();
+
+  const currentLanguage = useAppSelector(
     (state: RootState) => state.compilerSlice.currentLanguage
   );
 
   const fullCode = useSelector(
     (state: RootState) => state.compilerSlice.fullCode
   );
-
-  const dispatch = useDispatch();
 
   const onChange = useCallback((value: string) => {
     dispatch(updateCodeValue(value));

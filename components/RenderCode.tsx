@@ -1,22 +1,28 @@
 "use client"
 
+import { useAppSelector } from "@/redux/hooks/hook";
 import { RootState } from "@/redux/store";
-import { useSelector } from "react-redux";
 
 export default function RenderCode() {
-  const fullCode = useSelector(
+  const fullCode = useAppSelector(
     (state: RootState) => state.compilerSlice.fullCode
+  );
+
+  const config = useAppSelector(
+    (state: RootState) => state.compilerSlice.config
   );
 
   const combinedCode = `
   <html>
     <head>
+      ${config.html}
       <style>${fullCode.css}</style>
     </head>
     <body>
       ${fullCode.html}
     </body>
     <script>${fullCode.javascript}</script>
+    ${config.javascript}
   </html>`;
 
   const iframeCode = `data:text/html;charset=utf-8,${encodeURIComponent(
@@ -25,7 +31,11 @@ export default function RenderCode() {
 
   return (
     <div className="bg-white h-screen">
-      <iframe className="w-full h-full" src={iframeCode} />
+      <iframe
+        src={iframeCode}
+        title="Rendered code"
+        className="w-full h-full"
+      ></iframe>
     </div>
   );
 }
