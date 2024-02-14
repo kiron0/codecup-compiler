@@ -23,6 +23,9 @@ export default function HelperHeader() {
 
   return (
     <div className="h-[50px] bg-black/35 text-white p-2 flex justify-between items-center">
+      <Link href='/' className="flex justify-end">
+        <Image src={Logo} alt="CodeCup Compiler" className="w-12 h-12" />
+      </Link>
       <div className="flex justify-center items-center gap-2">
         <small className="hidden sm:block">Current Language: </small>
         <Select
@@ -45,9 +48,6 @@ export default function HelperHeader() {
           </SelectContent>
         </Select>
       </div>
-      <Link href='/' className="flex justify-end">
-        <Image src={Logo} alt="THK Web Compiler" className="w-12 h-12" />
-      </Link>
     </div>
   );
 }
