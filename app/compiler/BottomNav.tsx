@@ -7,7 +7,7 @@ import SettingDialog from "./SettingDialog";
 
 export default function BottomNav() {
           return (
-                    <div className="absolute bottom-0 right-4 mb-4">
+                    <div className="absolute bottom-0 left-4 mb-4">
                               <div className="w-full h-full flex justify-center items-center gap-5 text-black bg-white px-4 py-2 rounded-xl shadow-lg">
                                         <Link href="/">
                                                   <Button variant="ghost" size="icon" className="hover:bg-transparent hover:text-black">

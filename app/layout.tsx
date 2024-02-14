@@ -8,7 +8,7 @@ const nunito = Nunito({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: "THK Web Compiler",
-  description: "Compiler HTML, CSS, JavaScript Code on the go and share it with your friends",
+  description: "Compile HTML, CSS, JavaScript Code on the go and share it with your friends",
 };
 
 export default function RootLayout({
