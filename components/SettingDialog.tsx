@@ -10,22 +10,12 @@ import {
           DialogTitle,
           DialogTrigger
 } from "@/components/ui/dialog"
-import { Label } from "@/components/ui/label"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { htmlConfigSchema } from "@/lib/schema/htmlConfig.schema"
 import { jsConfigSchema } from "@/lib/schema/jsConfig.schema"
-import { useAppDispatch } from "@/redux/hooks/hook"
-import { AppSliceStateType, updateTheme } from "@/redux/slices/appSlice"
 import { ReactNode } from "react"
 
 export default function SettingDialog({ button }: { button: ReactNode }) {
-          const dispatch = useAppDispatch();
-
-          const handleAddTheme = (e: AppSliceStateType["theme"]) => {
-                    dispatch(updateTheme(e))
-          }
-
           return (
                     <Dialog>
                               <DialogTrigger asChild>
@@ -39,10 +29,9 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                   </DialogDescription>
                                         </DialogHeader>
                                         <Tabs defaultValue="html" className="w-full">
-                                                  <TabsList className="w-full grid grid-cols-3">
+                                                  <TabsList className="w-full grid grid-cols-2">
                                                             <TabsTrigger value="html">HTML</TabsTrigger>
                                                             <TabsTrigger value="javascript">JavaScript</TabsTrigger>
-                                                            <TabsTrigger value="editorTheme">Editor Theme</TabsTrigger>
                                                   </TabsList>
                                                   <TabsContent value="html" className="mt-5">
                                                             <Card className="p-4">
@@ -64,31 +53,6 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                                                 subtitle="This will be added after the body tag of your HTML file"
                                                                                 placeholder="Input JavaScript config/CDN"
                                                                       />
-                                                            </Card>
-                                                  </TabsContent>
-                                                  <TabsContent value="editorTheme" className="mt-5">
-                                                            <Card className="p-4">
-                                                                      <Label>Editor Theme</Label>
-                                                                      <small className="text-gray-500 block mb-3">
-                                                                                Select your favorite editor theme
-                                                                      </small>
-                                                                      <Select
-                                                                                onValueChange={(e: Partial<AppSliceStateType["theme"]> | undefined) => handleAddTheme(e as AppSliceStateType["theme"])}
-                                                                      >
-                                                                                <SelectTrigger className="w-full">
-                                                                                          <SelectValue placeholder="Select a theme" />
-                                                                                </SelectTrigger>
-                                                                                <SelectContent>
-                                                                                          <SelectGroup>
-                                                                                                    <SelectLabel>All Themes</SelectLabel>
-                                                                                                    <SelectItem value="tokyoNightInit">Tokyo Night</SelectItem>
-                                                                                                    <SelectItem value="andromedaInit">Andromeda</SelectItem>
-                                                                                                    <SelectItem value="copilotInit">Copilot</SelectItem>
-                                                                                                    <SelectItem value="draculaInit">Dracula</SelectItem>
-                                                                                                    <SelectItem value="nordInit">Nord</SelectItem>
-                                                                                          </SelectGroup>
-                                                                                </SelectContent>
-                                                                      </Select>
                                                             </Card>
                                                   </TabsContent>
                                         </Tabs>

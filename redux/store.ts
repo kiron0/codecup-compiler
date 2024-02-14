@@ -1,4 +1,3 @@
-import appSlice from '@/redux/slices/appSlice'
 import compilerSlice from '@/redux/slices/compilerSlice'
 import { configureStore } from '@reduxjs/toolkit'
 
@@ -6,7 +5,6 @@ export const makeStore = () => {
           return configureStore({
                     reducer: {
                               compilerSlice,
-                              appSlice,
                     }
           })
 }

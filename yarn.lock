@@ -1334,34 +1334,6 @@
     "@replit/codemirror-lang-svelte" "^6.0.0"
     codemirror-lang-mermaid "^0.5.0"
 
-"@uiw/codemirror-theme-andromeda@^4.21.21":
-  version "4.21.21"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-andromeda/-/codemirror-theme-andromeda-4.21.21.tgz#b2741cecfd3af196e0fbc7a94a4c62fe3f75e43a"
-  integrity sha512-4iDbO6CQqVm+nK+3Fq0rsUmyOT8gqA05zMCWDAva/mJ+N3AzFCkygDyq87qSZw1kO3u6weThdNxqoukhyIT8Gg==
-  dependencies:
-    "@uiw/codemirror-themes" "4.21.21"
-
-"@uiw/codemirror-theme-copilot@^4.21.21":
-  version "4.21.21"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-copilot/-/codemirror-theme-copilot-4.21.21.tgz#7f29ee0e1778882cc562a10bdf09603507d3b84f"
-  integrity sha512-1AhVILVqnczOEsn2vKU6GF7Ka+/hU0kPgwx0nkHrhjg5en0Bjz7YRglG/iVLr31A7CxvAR6csmdABqdjVxV5ng==
-  dependencies:
-    "@uiw/codemirror-themes" "4.21.21"
-
-"@uiw/codemirror-theme-dracula@^4.21.21":
-  version "4.21.21"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.21.21.tgz#9b21acd7d3852046d8ff680f0591b87f734c7ae2"
-  integrity sha512-7NAznBZ/DgRuc8FOMmRRI7NAZv4RgARVX86b9MYxU4HcINgGrk+tnJCxOVwJbAyQQ/LjsFLzNLIK23HrjM5AtA==
-  dependencies:
-    "@uiw/codemirror-themes" "4.21.21"
-
-"@uiw/codemirror-theme-nord@^4.21.21":
-  version "4.21.21"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-nord/-/codemirror-theme-nord-4.21.21.tgz#104394195364f78aa9708128ddd285d841673511"
-  integrity sha512-VOTWCPbkZjxPE5FZUp/WYgKXELZ0LNnfRwBz6iPAD3u4dVXfnGzHDIzVx406R0SaJ8MO42zAoee7PQiRFRsMBw==
-  dependencies:
-    "@uiw/codemirror-themes" "4.21.21"
-
 "@uiw/codemirror-theme-tokyo-night@^4.21.21":
   version "4.21.21"
   resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-tokyo-night/-/codemirror-theme-tokyo-night-4.21.21.tgz#899607322893bdac7e048fd15e8a819ea0448599"
