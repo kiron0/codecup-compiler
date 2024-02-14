@@ -7,7 +7,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
           return (
-                    <div className="w-full h-screen text-white flex justify-center items-center flex-col gap-3">
+                    <div className="w-full h-[80vh] md:h-screen text-white flex justify-center items-center flex-col gap-3">
                               <div className="w-60 h-60">
                                         <Image src={Logo} alt="CodeCup Compiler" width={100} height={100} draggable={false} className='w-full h-full object-cover select-none' />
                               </div>
