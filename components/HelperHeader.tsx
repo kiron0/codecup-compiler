@@ -1,8 +1,6 @@
 "use client"
 
-import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
-
+import Logo from "@/assets/logo.png";
 import {
   Select,
   SelectContent,
@@ -13,6 +11,8 @@ import {
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { CompilerSliceStateType, updateCurrentLanguage } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function HelperHeader() {
   const dispatch = useAppDispatch();
@@ -45,15 +45,9 @@ export default function HelperHeader() {
           </SelectContent>
         </Select>
       </div>
-      <div className="flex gap-1">
-        <Button
-          className="flex justify-center items-center gap-1"
-          variant="secondary"
-          size="icon"
-        >
-          <Save size={16} />
-        </Button>
-      </div>
+      <Link href='/' className="flex justify-end">
+        <Image src={Logo} alt="THK Web Compiler" className="w-12 h-12" />
+      </Link>
     </div>
   );
 }

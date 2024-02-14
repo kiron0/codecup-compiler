@@ -5,7 +5,7 @@ import { updateCodeValue } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
-import { draculaInit } from "@uiw/codemirror-theme-dracula";
+import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import { useCallback } from "react";
 import { useSelector } from "react-redux";
@@ -32,7 +32,7 @@ export default function CodeEditor() {
       height="calc(100vh - 50px)"
       extensions={[loadLanguage(currentLanguage)!]}
       onChange={onChange}
-      theme={draculaInit({
+      theme={tokyoNightInit({
         settings: {
           caret: "#c6c6c6",
           fontFamily: "monospace",

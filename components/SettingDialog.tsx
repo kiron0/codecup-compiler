@@ -21,7 +21,7 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                               <DialogTrigger asChild>
                                         {button}
                               </DialogTrigger>
-                              <DialogContent className="sm:max-w-[600px] w-full">
+                              <DialogContent className="sm:max-w-[600px] w-[95%] rounded-2xl">
                                         <DialogHeader>
                                                   <DialogTitle>Add Extra Config/CDN</DialogTitle>
                                                   <DialogDescription>
@@ -38,8 +38,8 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                                       <ConfigForm
                                                                                 schema={htmlConfigSchema}
                                                                                 fieldName="html"
-                                                                                label="Your HTML Config/CDN"
-                                                                                subtitle="This will be added to the head of your HTML file."
+                                                                                label="HTML Config/CDN"
+                                                                                subtitle="This will be added inside the head tag of your HTML file"
                                                                                 placeholder="Input HTML config/CDN"
                                                                       />
                                                             </Card>
@@ -49,8 +49,8 @@ export default function SettingDialog({ button }: { button: ReactNode }) {
                                                                       <ConfigForm
                                                                                 schema={jsConfigSchema}
                                                                                 fieldName="javascript"
-                                                                                label="Your JavaScript Config/CDN"
-                                                                                subtitle="This will be added after the body of your HTML file."
+                                                                                label="JavaScript Config/CDN"
+                                                                                subtitle="This will be added after the body tag of your HTML file"
                                                                                 placeholder="Input JavaScript config/CDN"
                                                                       />
                                                             </Card>

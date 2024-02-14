@@ -1,22 +1,28 @@
 "use client"
 
+import DevDialog from "@/components/DevDialog";
+import SettingDialog from "@/components/SettingDialog";
 import { Button } from "@/components/ui/button";
-import { Bolt, Home } from "lucide-react";
+import { Bolt, Code2, Home } from "lucide-react";
 import Link from "next/link";
-import SettingDialog from "./SettingDialog";
 
 export default function BottomNav() {
           return (
                     <div className="absolute bottom-0 left-4 mb-4">
-                              <div className="w-full h-full flex justify-center items-center gap-5 text-white bg-black/35 px-4 py-2 rounded-xl shadow-lg">
+                              <div className="w-full h-full flex justify-center items-center gap-3 px-4 py-2 rounded-xl border border-input bg-background shadow-sm sm:hover:bg-accent sm:hover:text-accent-foreground duration-300">
+                                        <SettingDialog
+                                                  button={<Button variant="ghost" size="icon" className="hover:bg-transparent">
+                                                            <Bolt size={20} />
+                                                  </Button>}
+                                        />
                                         <Link href="/">
                                                   <Button variant="ghost" size="icon" className="hover:bg-transparent">
                                                             <Home size={20} />
                                                   </Button>
                                         </Link>
-                                        <SettingDialog
+                                        <DevDialog
                                                   button={<Button variant="ghost" size="icon" className="hover:bg-transparent">
-                                                            <Bolt size={20} />
+                                                            <Code2 size={20} />
                                                   </Button>}
                                         />
                               </div>

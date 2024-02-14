@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { DialogClose } from "@/components/ui/dialog"
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form"
 import { Textarea } from "@/components/ui/textarea"
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook"
@@ -10,7 +11,6 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { DialogClose } from "@/components/ui/dialog"
 
 type ConfigFormProps = {
           schema: z.ZodObject<any, any>
@@ -80,9 +80,11 @@ export default function ConfigForm({ label, subtitle, fieldName, schema, placeho
                                                             </FormItem>
                                                   )}
                                         />
-                                        <DialogClose className="flex justify-end">
-                                                  <Button type="submit" className="mt-4" size="sm" disabled={form.formState.isSubmitting}>ADD</Button>
-                                        </DialogClose>
+                                        <div className="flex justify-end">
+                                                  <DialogClose>
+                                                            <Button type="submit" className="mt-4" variant='outline' disabled={form.formState.isSubmitting}>ADD</Button>
+                                                  </DialogClose>
+                                        </div>
                               </form>
                     </Form>
           )

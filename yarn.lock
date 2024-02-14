@@ -1214,10 +1214,10 @@
     "@replit/codemirror-lang-svelte" "^6.0.0"
     codemirror-lang-mermaid "^0.5.0"
 
-"@uiw/codemirror-theme-dracula@^4.21.21":
+"@uiw/codemirror-theme-tokyo-night@^4.21.21":
   version "4.21.21"
-  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-dracula/-/codemirror-theme-dracula-4.21.21.tgz#9b21acd7d3852046d8ff680f0591b87f734c7ae2"
-  integrity sha512-7NAznBZ/DgRuc8FOMmRRI7NAZv4RgARVX86b9MYxU4HcINgGrk+tnJCxOVwJbAyQQ/LjsFLzNLIK23HrjM5AtA==
+  resolved "https://registry.yarnpkg.com/@uiw/codemirror-theme-tokyo-night/-/codemirror-theme-tokyo-night-4.21.21.tgz#899607322893bdac7e048fd15e8a819ea0448599"
+  integrity sha512-zkQct/hRZdmcyjtwQvsqz9VsUB4V/MmlkSTbYhBsP4ZZKhkxYOdr0nDhNMXPbo8h6nWxvkUvre0NjM1GcMwBtg==
   dependencies:
     "@uiw/codemirror-themes" "4.21.21"
 

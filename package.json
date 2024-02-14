@@ -20,7 +20,7 @@
     "@radix-ui/react-tabs": "^1.0.4",
     "@reduxjs/toolkit": "^2.2.0",
     "@uiw/codemirror-extensions-langs": "^4.21.21",
-    "@uiw/codemirror-theme-dracula": "^4.21.21",
+    "@uiw/codemirror-theme-tokyo-night": "^4.21.21",
     "@uiw/codemirror-themes": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
     "class-variance-authority": "^0.7.0",
