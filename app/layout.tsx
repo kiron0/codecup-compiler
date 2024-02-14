@@ -1,5 +1,4 @@
 import StoreProvider from "@/app/StoreProvider";
-import { ThemeProvider } from "@/components/theme-provider";
 import getBaseURL from "@/lib/getBaseURL";
 import type { Metadata } from "next";
 import { Nunito } from 'next/font/google';
@@ -34,21 +33,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-      <html lang="en" suppressHydrationWarning>
-        <body className={nunito.className}>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={`${nunito.className} dark`}>
+        <StoreProvider>
           <NextTopLoader
             color="#694CFB"
           />
-          <StoreProvider>
-            <ThemeProvider
-              defaultTheme="dark"
-            >
-              {children}
-            </ThemeProvider>
-          </StoreProvider>
-        </body>
-      </html>
-    </>
+          {children}
+        </StoreProvider>
+      </body>
+    </html>
   );
 }
