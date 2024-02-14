@@ -73,7 +73,7 @@ export default function ConfigForm({ label, subtitle, fieldName, schema, placeho
                                                                                 <Textarea
                                                                                           typeof="text"
                                                                                           placeholder={placeholder}
-                                                                                          className="resize-none h-40 md:h-52 w-full mt-2"
+                                                                                          className="resize-none h-48 md:h-52 w-full mt-2"
                                                                                           {...field}
                                                                                 />
                                                                       </FormControl>

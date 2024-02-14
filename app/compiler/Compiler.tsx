@@ -11,16 +11,16 @@ export default function CompilerPage() {
       direction="horizontal"
     >
       <ResizablePanel
-        className="h-screen md:min-w-[40%]"
-        defaultSize={50}
+        className="h-screen min-w-[5%] md:min-w-[35%]"
+        defaultSize={40}
       >
         <HelperHeader />
         <CodeEditor />
       </ResizablePanel>
-      <ResizableHandle />
+      <ResizableHandle withHandle />
       <ResizablePanel
-        className="h-screen md:min-w-[40%]"
-        defaultSize={50}
+        className="h-screen min-w-[5%] md:min-w-[35%]"
+        defaultSize={60}
       >
         <RenderCode />
       </ResizablePanel>

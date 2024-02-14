@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       images: [
         {
-          url: new URL('/logo.png', BASE_URL),
+          url: new URL('/favicon.png', BASE_URL),
           width: 800,
           height: 600,
           alt: 'CodeCup Compiler',

@@ -8,7 +8,7 @@ import Link from "next/link";
 
 export default function BottomNav() {
           return (
-                    <div className="absolute bottom-0 left-4 mb-4">
+                    <div className="absolute bottom-16 md:bottom-0 right-4 mb-4">
                               <div className="w-full h-full flex justify-center items-center gap-3 px-4 py-2 rounded-xl border border-input bg-background shadow-sm sm:hover:bg-accent sm:hover:text-accent-foreground duration-300">
                                         <SettingDialog
                                                   button={<Button variant="ghost" size="icon" className="hover:bg-transparent">
