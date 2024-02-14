@@ -5,10 +5,13 @@ import { updateCodeValue } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
+// import { andromedaInit } from "@uiw/codemirror-theme-andromeda";
+// import { copilotInit } from "@uiw/codemirror-theme-copilot";
+// import { draculaInit } from "@uiw/codemirror-theme-dracula";
+// import { nordInit } from "@uiw/codemirror-theme-nord";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import { useCallback } from "react";
-import { useSelector } from "react-redux";
 
 export default function CodeEditor() {
   const dispatch = useAppDispatch();
@@ -17,7 +20,7 @@ export default function CodeEditor() {
     (state: RootState) => state.compilerSlice.currentLanguage
   );
 
-  const fullCode = useSelector(
+  const fullCode = useAppSelector(
     (state: RootState) => state.compilerSlice.fullCode
   );
 

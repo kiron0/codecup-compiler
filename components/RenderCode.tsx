@@ -14,7 +14,7 @@ export default function RenderCode() {
 
   const combinedCode = `
   <!DOCTYPE html>
-  <html>
+   <html>
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -38,7 +38,7 @@ export default function RenderCode() {
         src={iframeCode}
         title="Rendered code"
         className="w-full h-full"
-      ></iframe>
+      />
     </div>
   );
 }
