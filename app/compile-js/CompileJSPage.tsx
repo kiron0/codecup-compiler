@@ -20,7 +20,7 @@ export default function CompileJSPage() {
                     setIsLoading(true);
                     try {
                               setError('');
-                              const res = await axios.post(`${COMPILER_API}/compile`, { code });
+                              const res = await axios.post(`${COMPILER_API}/compile-js`, { code });
                               const data = res.data?.result;
                               setOutput(data);
                               setIsLoading(false);
