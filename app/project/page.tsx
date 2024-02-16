@@ -1,4 +1,4 @@
-import CompilerPage from "@/app/compiler/Compiler";
+import CompilerPage from "@/app/project/Compiler";
 import BottomNav from "@/components/BottomNav";
 import getBaseURL from "@/lib/getBaseURL";
 import { Metadata } from "next";
@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
           return {
                     metadataBase: new URL(BASE_URL),
-                    title: "Compiler - CodeCup Compiler",
+                    title: "Start your project online - CodeCup Compiler",
                     description: "Compile HTML, CSS, JavaScript Code on the go and share it with your friends",
                     openGraph: {
                               images: [

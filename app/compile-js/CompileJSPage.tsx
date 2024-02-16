@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
+import { COMPILER_API } from '@/lib';
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
@@ -19,7 +20,7 @@ export default function CompileJSPage() {
                     setIsLoading(true);
                     try {
                               setError('');
-                              const res = await axios.post('http://localhost:5000/compile', { code });
+                              const res = await axios.post(`${COMPILER_API}/compile`, { code });
                               const data = res.data?.result;
                               setOutput(data);
                               setIsLoading(false);
@@ -48,7 +49,9 @@ export default function CompileJSPage() {
                                         })}
                               />
                               <div className='mt-5'>
-                                        <Button variant="default" loading={isLoading} disabled={!code} onClick={compileCode}>Compile</Button>
+                                        <Button variant="default" loading={isLoading} disabled={!code} onClick={compileCode}>
+                                                  {isLoading ? 'Compiling...' : 'Compile'}
+                                        </Button>
                               </div>
                               <h2 className='mb-5 mt-10 font-bold text-xl md:text-2xl'>Output:</h2>
                               <Textarea

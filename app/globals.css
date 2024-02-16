@@ -75,8 +75,23 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0.3rem;
+  border-radius: 0.6rem;
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0.6rem;
+  background-color: #242424;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #000;
+}
+
 .cm-scroller,
 .cm-editor,
 .cm-gutters {
-  border-radius: 10px !important;
+  border-radius: 5px !important;
 }
