@@ -11,7 +11,7 @@ export default function CompilerPage() {
       direction="horizontal"
     >
       <ResizablePanel
-        className="h-screen min-w-[5%] md:min-w-[35%]"
+        className="h-screen min-w-[5%] md:min-w-[40%]"
         defaultSize={40}
       >
         <HelperHeader />

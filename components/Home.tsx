@@ -18,7 +18,7 @@ export default function HomePage() {
                                         friends
                               </p>
                               <Link href="/project" className="mt-3">
-                                        <Button variant="outline" className='md:py-6 md:px-5'>
+                                        <Button variant="outline" className='py-5 md:py-6 md:px-5'>
                                                   <Code2 size={20} className='mr-2' /> Start Project
                                         </Button>
                               </Link>

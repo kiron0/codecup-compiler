@@ -8,7 +8,9 @@ import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import axios from 'axios';
+import { Download } from 'lucide-react';
 import { useState } from 'react';
+import { RxReset } from 'react-icons/rx';
 
 export default function CompileJSPage() {
           const [code, setCode] = useState<string>('');
@@ -19,11 +21,17 @@ export default function CompileJSPage() {
           const compileCode = async () => {
                     setIsLoading(true);
                     try {
-                              setError('');
                               const res = await axios.post(`${COMPILER_API}/compile-js`, { code });
-                              const data = res.data?.result;
-                              setOutput(data);
-                              setIsLoading(false);
+                              const data = res.data;
+                              if (data?.success) {
+                                        setError('');
+                                        setOutput(data?.result);
+                                        setIsLoading(false);
+                              } else {
+                                        setOutput('');
+                                        setError(data?.result);
+                                        setIsLoading(false);
+                              }
                     } catch (error) {
                               console.error('Error compiling code:', error);
                               setError('Error compiling code');
@@ -48,18 +56,65 @@ export default function CompileJSPage() {
                                                   styles: [{ tag: t.comment, color: "#6272a4" }],
                                         })}
                               />
-                              <div className='mt-5'>
+                              <div className='mt-5 flex items-center gap-3'>
                                         <Button variant="default" loading={isLoading} disabled={!code} onClick={compileCode}>
                                                   {isLoading ? 'Compiling...' : 'Compile'}
                                         </Button>
+                                        {
+                                                  output || error ? (
+                                                            <Button
+                                                                      size='icon'
+                                                                      variant="default"
+                                                                      onClick={() => {
+                                                                                setCode('');
+                                                                                setOutput('');
+                                                                                setError('');
+                                                                      }}
+                                                            >
+                                                                      <RxReset size={15} />
+                                                            </Button>
+                                                  ) : null
+                                        }
+                                        {
+                                                  output ? (
+                                                            <Button
+                                                                      size='icon'
+                                                                      variant="default"
+                                                                      onClick={() => {
+                                                                                const blob = new Blob([code], { type: 'text/javascript' });
+                                                                                const url = URL.createObjectURL(blob);
+                                                                                const a = document.createElement('a');
+                                                                                a.href = url;
+                                                                                const fileName = `output-${new Date().getTime()}.js`;
+                                                                                a.download = fileName;
+                                                                                a.click();
+                                                                                URL.revokeObjectURL(url);
+                                                                      }}
+                                                            >
+                                                                      <Download size={15} />
+                                                            </Button>
+                                                  ) : null
+                                        }
                               </div>
-                              <h2 className='mb-5 mt-10 font-bold text-xl md:text-2xl'>Output:</h2>
-                              <Textarea
-                                        readOnly
-                                        value={output || error}
-                                        placeholder="Output will appear here..."
-                                        className={`p-4 text-base md:text-lg bg-transparent resize-none w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none ${error ? 'text-red-500' : ''}`}
-                              />
+                              {
+                                        output || error ? (
+                                                  <>
+                                                            <h2 className='mb-5 mt-10 font-bold text-xl md:text-2xl'>Output:</h2>
+                                                            {output && <Textarea
+                                                                      readOnly
+                                                                      value={output}
+                                                                      placeholder="Output will appear here..."
+                                                                      className={`p-4 text-base md:text-lg bg-transparent resize-none w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none`}
+                                                            />}
+                                                            {error && <Textarea
+                                                                      readOnly
+                                                                      value={error}
+                                                                      placeholder="Error will appear here..."
+                                                                      className={`p-4 text-base md:text-lg bg-transparent resize-none w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none border border-red-500 text-red-500`}
+                                                            />}
+                                                  </>
+                                        ) : null
+                              }
                     </div>
           )
 }
