@@ -1,5 +1,6 @@
-import StoreProvider from "@/app/StoreProvider";
+
 import getBaseURL from "@/lib/getBaseURL";
+import StoreProvider from "@/redux/StoreProvider";
 import type { Metadata } from "next";
 import { Nunito } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';
@@ -13,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(BASE_URL),
-    title: "CodeCup Compiler",
+    title: "CodeCup Compiler - Compile HTML, CSS, JavaScript Code on the go and Solve Problems Online",
     description: "Compile HTML, CSS, JavaScript Code on the go and share it with your friends",
     openGraph: {
       images: [
