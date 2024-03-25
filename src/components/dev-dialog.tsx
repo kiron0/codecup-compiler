@@ -26,7 +26,7 @@ export default function DevDialog({ button }: { button: ReactNode }) {
                                                   </DialogDescription>
                                         </DialogHeader>
                                         <div>
-                                                  <p className="text-gray-500 text-center text-sm">
+                                                  <p className="text-gray-300 text-center text-sm">
                                                             Hi, I am Toufiq Hasan Kiron. I am a Full Stack Web Developer
                                                             and a Software Engineer. I love to build web applications and
                                                             solve problems using code. I am also a tech enthusiast and
