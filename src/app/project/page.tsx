@@ -1,7 +1,7 @@
-import CompilerPage from "@/app/project/Compiler";
-import BottomNav from "@/components/BottomNav";
+import BottomNav from "@/components/bottom-nav";
 import getBaseURL from "@/lib/getBaseURL";
 import { Metadata } from "next";
+import CompilerPage from "./compiler";
 
 export async function generateMetadata(): Promise<Metadata> {
           const BASE_URL = await getBaseURL();

@@ -1,6 +1,7 @@
 "use client"
 
 import Logo from "@/assets/logo.png";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -12,14 +13,15 @@ import { getTemplate } from "@/lib/template";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { CompilerSliceStateType, updateCurrentLanguage } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
+import JSZip from "jszip";
 import { Download } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { toast } from "sonner";
-import { Button } from "./ui/button";
 
 export default function HelperHeader() {
   const dispatch = useAppDispatch();
+  const zip = new JSZip();
 
   const currentLanguage = useAppSelector(
     (state: RootState) => state.compilerSlice.currentLanguage
@@ -34,12 +36,8 @@ export default function HelperHeader() {
   );
 
   const handleDownloadCode = () => {
-    if (
-      fullCode.html === "" &&
-      fullCode.css === "" &&
-      fullCode.javascript === ""
-    ) {
-      toast.error("Code is Empty");
+    if (fullCode.html === "" && fullCode.css === "" && fullCode.javascript === "") {
+      return toast.error("Code is Empty");
     } else {
       const htmlTemplate = getTemplate(fullCode, config);
 
@@ -49,35 +47,17 @@ export default function HelperHeader() {
         type: "text/javascript",
       });
 
-      const htmlLink = document.createElement("a");
-      const cssLink = document.createElement("a");
-      const javascriptLink = document.createElement("a");
+      zip.file("index.html", htmlCode);
+      zip.file("style.css", cssCode);
+      zip.file("script.js", javascriptCode);
 
-      htmlLink.href = URL.createObjectURL(htmlCode);
-      htmlLink.download = "index.html";
-      document.body.appendChild(htmlLink);
-
-      cssLink.href = URL.createObjectURL(cssCode);
-      cssLink.download = "style.css";
-      document.body.appendChild(cssLink);
-
-      javascriptLink.href = URL.createObjectURL(javascriptCode);
-      javascriptLink.download = "script.js";
-      document.body.appendChild(javascriptLink);
-
-      if (fullCode.html !== "") {
-        htmlLink.click();
-      }
-      if (fullCode.css !== "") {
-        cssLink.click();
-      }
-      if (fullCode.javascript !== "") {
-        javascriptLink.click();
-      }
-
-      document.body.removeChild(htmlLink);
-      document.body.removeChild(cssLink);
-      document.body.removeChild(javascriptLink);
+      zip.generateAsync({ type: "blob" }).then((content) => {
+        const url = URL.createObjectURL(content);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `CodeCup-${Date.now()}.zip`;
+        a.click();
+      });
 
       toast.success("Code Downloaded Successfully!", {
         style: {

@@ -1,8 +1,8 @@
 "use client"
 
-import CodeEditor from "@/components/CodeEditor"
-import HelperHeader from "@/components/HelperHeader"
-import RenderCode from "@/components/RenderCode"
+import CodeEditor from "@/components/code-editor"
+import HelperHeader from "@/components/helper-header"
+import RenderCode from "@/components/render-code"
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable"
 
 export default function CompilerPage() {

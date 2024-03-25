@@ -1,6 +1,6 @@
 "use client"
 
-import ConfigForm from "@/components/ConfigForm"
+import ConfigForm from "@/components/config-form"
 import { Card } from "@/components/ui/card"
 import {
           Dialog,

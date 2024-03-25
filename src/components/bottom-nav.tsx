@@ -1,7 +1,7 @@
 "use client"
 
-import DevDialog from "@/components/DevDialog";
-import SettingDialog from "@/components/SettingDialog";
+import DevDialog from "@/components/dev-dialog";
+import SettingDialog from "@/components/setting-dialog";
 import { Button } from "@/components/ui/button";
 import { Bolt, Code2, Home } from "lucide-react";
 import Link from "next/link";
