@@ -1,5 +1,6 @@
 "use client"
 
+import { Button } from "@/components/ui/button"
 import {
           Dialog,
           DialogContent,
@@ -10,7 +11,6 @@ import {
 } from "@/components/ui/dialog"
 import { Facebook, Github, Linkedin } from "lucide-react"
 import { ReactNode } from "react"
-import { Button } from "./ui/button"
 
 export default function DevDialog({ button }: { button: ReactNode }) {
           return (

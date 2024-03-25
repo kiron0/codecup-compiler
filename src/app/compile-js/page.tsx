@@ -1,4 +1,4 @@
-import CompileJSPage from "@/app/compile-js/CompileJSPage";
+import CompileJSPage from "@/app/compile-js/compile-js-page";
 import BottomNav from "@/components/bottom-nav";
 import getBaseURL from "@/lib/getBaseURL";
 import type { Metadata } from "next";

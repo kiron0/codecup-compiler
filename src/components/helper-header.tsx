@@ -9,19 +9,16 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getTemplate } from "@/lib/template";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { CompilerSliceStateType, updateCurrentLanguage } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";
-import JSZip from "jszip";
 import { Download } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
+import DownloadDialog from "./download-dialog";
 
 export default function HelperHeader() {
   const dispatch = useAppDispatch();
-  const zip = new JSZip();
 
   const currentLanguage = useAppSelector(
     (state: RootState) => state.compilerSlice.currentLanguage
@@ -31,44 +28,6 @@ export default function HelperHeader() {
     (state: RootState) => state.compilerSlice.fullCode
   );
 
-  const config = useAppSelector(
-    (state: RootState) => state.compilerSlice.config
-  );
-
-  const handleDownloadCode = () => {
-    if (fullCode.html === "" && fullCode.css === "" && fullCode.javascript === "") {
-      return toast.error("Code is Empty");
-    } else {
-      const htmlTemplate = getTemplate(fullCode, config);
-
-      const htmlCode = new Blob([htmlTemplate], { type: "text/html" });
-      const cssCode = new Blob([fullCode.css], { type: "text/css" });
-      const javascriptCode = new Blob([fullCode.javascript], {
-        type: "text/javascript",
-      });
-
-      zip.file("index.html", htmlCode);
-      zip.file("style.css", cssCode);
-      zip.file("script.js", javascriptCode);
-
-      zip.generateAsync({ type: "blob" }).then((content) => {
-        const url = URL.createObjectURL(content);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `CodeCup-${Date.now()}.zip`;
-        a.click();
-      });
-
-      toast.success("Code Downloaded Successfully!", {
-        style: {
-          color: "white",
-          background: "#020817",
-          border: "none"
-        },
-      });
-    }
-  };
-
   return (
     <div className="h-[50px] bg-black/35 text-white p-2 flex justify-between items-center">
       <div className="flex items-center gap-3">
@@ -77,13 +36,14 @@ export default function HelperHeader() {
         </Link>
         {
           fullCode.html !== "" || fullCode.css !== "" || fullCode.javascript !== "" ? (
-            <Button
-              variant="outline"
-              onClick={handleDownloadCode}
-              className="px-3.5 bg-transparent"
-            >
-              <Download size={15} />
-            </Button>
+            <DownloadDialog button={
+              <Button
+                variant="outline"
+                className="px-3.5 bg-transparent"
+              >
+                <Download size={15} />
+              </Button>
+            } />
           ) : null
         }
       </div>

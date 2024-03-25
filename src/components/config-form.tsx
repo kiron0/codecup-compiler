@@ -9,7 +9,7 @@ import { updateConfig } from "@/redux/slices/compilerSlice"
 import { RootState } from "@/redux/store"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useEffect } from "react"
-import { useForm } from "react-hook-form"
+import { useForm, UseFormReturn } from "react-hook-form"
 import { z } from "zod"
 
 type ConfigFormProps = {
@@ -45,7 +45,7 @@ export default function ConfigForm({ label, subtitle, fieldName, schema, placeho
                     defaultValues: {
                               fieldName: "",
                     },
-          })
+          }) as UseFormReturn<z.infer<typeof schema>>;
 
           function onSubmit(values: z.infer<typeof schema>) {
                     const value = values[fieldName];
