@@ -4,7 +4,7 @@ import BaseLayout from "@/components/base-layout";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { API, LANGUAGE_VERSIONS } from "@/utils";
+import { API, CODE_SNIPPETS, LANGUAGE_VERSIONS } from "@/utils";
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
@@ -18,7 +18,7 @@ import { RxReset } from "react-icons/rx";
 const languages = Object.entries(LANGUAGE_VERSIONS);
 
 export default function Execute() {
-          const [code, setCode] = useState<string>('');
+          const [code, setCode] = useState<string>(CODE_SNIPPETS.javascript);
           const [lang, setLang] = useState<keyof typeof LANGUAGE_VERSIONS>('javascript');
           const [output, setOutput] = useState<string>('');
           const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -65,8 +65,11 @@ export default function Execute() {
                                                             <div className="flex justify-center items-center gap-2 mb-5">
                                                                       <small className="hidden sm:block">Current Language: </small>
                                                                       <Select
-                                                                                defaultValue={lang}
-                                                                                onValueChange={(value) => setLang(value as keyof typeof LANGUAGE_VERSIONS)}
+                                                                                value={lang}
+                                                                                onValueChange={(value) => {
+                                                                                          setLang(value as keyof typeof LANGUAGE_VERSIONS);
+                                                                                          setCode(CODE_SNIPPETS[value as keyof typeof CODE_SNIPPETS]);
+                                                                                }}
                                                                       >
                                                                                 <SelectTrigger className="w-[180px] capitalize outline-none focus:ring-0">
                                                                                           <SelectValue />
@@ -105,8 +108,7 @@ export default function Execute() {
                                                             {
                                                                       output || error ? (
                                                                                 <Button
-                                                                                          size='icon'
-                                                                                          variant="default"
+                                                                                          size='sm'
                                                                                           onClick={() => {
                                                                                                     setCode('');
                                                                                                     setOutput('');

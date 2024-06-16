@@ -7,7 +7,7 @@ import { Code2 } from "lucide-react"
 import Image from 'next/image'
 import Link from 'next/link'
 import { MdCode } from "react-icons/md"
-import { RiJavascriptFill } from "react-icons/ri"
+// import { RiJavascriptFill } from "react-icons/ri"
 
 export default function HomePage() {
           return (
@@ -30,11 +30,11 @@ export default function HomePage() {
                                                             <MdCode size={20} className='mr-2' /> Execute Code
                                                   </Button>
                                         </Link>
-                                        <Link href="/compile-js" className="mt-2">
+                                        {/* <Link href="/compile-js" className="mt-2">
                                                   <Button variant="outline" className='py-5 md:py-6 md:px-5 bg-transparent border-gray-600 sm:hover:border-accent'>
                                                             <RiJavascriptFill size={20} className='mr-2' /> Compile JavaScript
                                                   </Button>
-                                        </Link>
+                                        </Link> */}
                               </div>
                     </BaseLayout>
           )

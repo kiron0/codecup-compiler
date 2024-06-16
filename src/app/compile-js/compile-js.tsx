@@ -1,7 +1,7 @@
 "use client"
 
 import BaseLayout from '@/components/base-layout';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
 import { COMPILER_API } from '@/utils';
 import { tags as t } from "@lezer/highlight";
@@ -10,7 +10,10 @@ import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import axios from 'axios';
 import { Download } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
+import { GoCodescan } from 'react-icons/go';
+import { HiOutlineArrowNarrowLeft } from 'react-icons/hi';
 import { RxReset } from 'react-icons/rx';
 
 export default function CompileJSPage() {
@@ -59,14 +62,16 @@ export default function CompileJSPage() {
                                                   })}
                                         />
                                         <div className='mt-5 flex items-center gap-3'>
-                                                  <Button variant="default" loading={isLoading} disabled={!code} onClick={compileCode}>
-                                                            {isLoading ? 'Compiling...' : 'Compile'}
+                                                  <Link href='/' className={buttonVariants({ size: "sm" })}>
+                                                            <HiOutlineArrowNarrowLeft /> Back
+                                                  </Link>
+                                                  <Button size="sm" loading={isLoading} disabled={!code} onClick={compileCode}>
+                                                            {isLoading ? 'Compiling...' : <>Compile <GoCodescan /></>}
                                                   </Button>
                                                   {
                                                             output || error ? (
                                                                       <Button
-                                                                                size='icon'
-                                                                                variant="default"
+                                                                                size='sm'
                                                                                 onClick={() => {
                                                                                           setCode('');
                                                                                           setOutput('');
@@ -80,7 +85,7 @@ export default function CompileJSPage() {
                                                   {
                                                             output ? (
                                                                       <Button
-                                                                                size='icon'
+                                                                                size='sm'
                                                                                 variant="default"
                                                                                 onClick={() => {
                                                                                           const blob = new Blob([code], { type: 'text/javascript' });
