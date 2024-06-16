@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Code2 } from "lucide-react"
 import Image from 'next/image'
 import Link from 'next/link'
+import { MdCode } from "react-icons/md"
 import { RiJavascriptFill } from "react-icons/ri"
 
 export default function HomePage() {
@@ -22,6 +23,11 @@ export default function HomePage() {
                                         <Link href="/project" className="mt-3">
                                                   <Button variant="outline" className='py-5 md:py-6 md:px-5 bg-transparent border-gray-600 sm:hover:border-accent'>
                                                             <Code2 size={20} className='mr-2' /> Start Project
+                                                  </Button>
+                                        </Link>
+                                        <Link href="/execute" className="mt-2">
+                                                  <Button variant="outline" className='py-5 md:py-6 md:px-5 bg-transparent border-gray-600 sm:hover:border-accent'>
+                                                            <MdCode size={20} className='mr-2' /> Execute Code
                                                   </Button>
                                         </Link>
                                         <Link href="/compile-js" className="mt-2">

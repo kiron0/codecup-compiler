@@ -1,5 +1,5 @@
 import NotFound from '@/components/not-found';
-import getBaseURL from '@/lib/getBaseURL';
+import getBaseURL from '@/utils/getBaseURL';
 import type { Metadata } from 'next';
 
 export async function generateMetadata(): Promise<Metadata> {

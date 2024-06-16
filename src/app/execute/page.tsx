@@ -1,13 +1,13 @@
-import CompileJSPage from "@/app/compile-js/compile-js";
 import getBaseURL from "@/utils/getBaseURL";
 import type { Metadata } from "next";
+import Execute from "./execute";
 
 export async function generateMetadata(): Promise<Metadata> {
           const BASE_URL = await getBaseURL();
 
           return {
                     metadataBase: new URL(BASE_URL),
-                    title: "Online JavaScript Compiler - CodeCup Compiler",
+                    title: "Online Code Compiler - CodeCup Compiler",
                     description: "Compile HTML, CSS, JavaScript Code on the go and share it with your friends",
                     openGraph: {
                               images: [
@@ -22,10 +22,10 @@ export async function generateMetadata(): Promise<Metadata> {
           }
 }
 
-export default function CompileJS() {
+export default function page() {
           return (
                     <>
-                              <CompileJSPage />
+                              <Execute />
                     </>
           )
 }

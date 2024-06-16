@@ -1,1 +1,0 @@
-export const COMPILER_API = process.env.NEXT_PUBLIC_COMPILER_API!;

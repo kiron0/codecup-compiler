@@ -11,8 +11,8 @@ import {
           DialogTrigger
 } from "@/components/ui/dialog"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { htmlConfigSchema } from "@/lib/schema/htmlConfig.schema"
-import { jsConfigSchema } from "@/lib/schema/jsConfig.schema"
+import { htmlConfigSchema } from "@/utils/schema/htmlConfig.schema"
+import { jsConfigSchema } from "@/utils/schema/jsConfig.schema"
 import { ReactNode } from "react"
 
 export default function SettingDialog({ button }: { button: ReactNode }) {

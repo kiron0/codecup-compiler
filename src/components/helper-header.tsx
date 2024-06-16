@@ -2,13 +2,7 @@
 
 import Logo from "@/assets/logo.png";
 import { Button } from "@/components/ui/button";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hook";
 import { CompilerSliceStateType, updateCurrentLanguage } from "@/redux/slices/compilerSlice";
 import { RootState } from "@/redux/store";

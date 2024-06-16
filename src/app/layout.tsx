@@ -1,6 +1,6 @@
 
-import getBaseURL from "@/lib/getBaseURL";
 import StoreProvider from "@/redux/StoreProvider";
+import getBaseURL from "@/utils/getBaseURL";
 import type { Metadata } from "next";
 import { Nunito } from 'next/font/google';
 import NextTopLoader from 'nextjs-toploader';

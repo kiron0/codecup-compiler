@@ -1,7 +1,7 @@
 import BottomNav from "@/components/bottom-nav";
-import getBaseURL from "@/lib/getBaseURL";
+import getBaseURL from "@/utils/getBaseURL";
 import { Metadata } from "next";
-import CompilerPage from "./compiler";
+import Project from "./project";
 
 export async function generateMetadata(): Promise<Metadata> {
           const BASE_URL = await getBaseURL();
@@ -26,7 +26,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default function Compiler() {
           return (
                     <div className="relative">
-                              <CompilerPage />
+                              <Project />
                               <BottomNav />
                     </div>
           )

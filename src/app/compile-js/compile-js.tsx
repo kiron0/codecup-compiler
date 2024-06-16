@@ -3,7 +3,7 @@
 import BaseLayout from '@/components/base-layout';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { COMPILER_API } from '@/lib';
+import { COMPILER_API } from '@/utils';
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";

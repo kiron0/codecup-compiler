@@ -8,7 +8,7 @@ import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/componen
 
 export default function CompilerPage() {
   return (
-    <BaseLayout>
+    <BaseLayout className="relative z-0">
       <ResizablePanelGroup
         direction="horizontal"
       >
