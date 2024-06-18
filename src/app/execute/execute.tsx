@@ -3,29 +3,33 @@
 import BaseLayout from "@/components/base-layout";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import { API, CODE_SNIPPETS, LANGUAGE_VERSIONS } from "@/utils";
 import { tags as t } from "@lezer/highlight";
 import { loadLanguage } from "@uiw/codemirror-extensions-langs";
 import { tokyoNightInit } from "@uiw/codemirror-theme-tokyo-night";
 import CodeMirror from "@uiw/react-codemirror";
 import Link from "next/link";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { GoCodescan } from "react-icons/go";
 import { HiOutlineArrowNarrowLeft } from "react-icons/hi";
 import { RxReset } from "react-icons/rx";
 
 const languages = Object.entries(LANGUAGE_VERSIONS);
 
+interface OutputProps {
+          output: ReactNode;
+          error: string;
+          isLoading: boolean;
+}
+
 export default function Execute() {
           const [code, setCode] = useState<string>(CODE_SNIPPETS.javascript);
           const [lang, setLang] = useState<keyof typeof LANGUAGE_VERSIONS>('javascript');
-          const [output, setOutput] = useState<string>('');
-          const [isLoading, setIsLoading] = useState<boolean>(false);
-          const [error, setError] = useState<string>('');
+          const [output, setOutput] = useState<OutputProps>({ output: '', error: '', isLoading: false });
 
           const compileCode = async () => {
-                    setIsLoading(true);
+                    setOutput({ ...output, isLoading: true });
                     try {
                               const res = await API.post('/execute', {
                                         language: lang,
@@ -37,22 +41,28 @@ export default function Execute() {
                                         ],
                               });
 
-                              const data = res.data;
-                              const output = data?.run?.output;
+                              const data = res?.data;
 
-                              if (data?.run?.stderr === "") {
-                                        setError('');
-                                        setOutput(output);
-                                        setIsLoading(false);
+                              if (data?.run?.stderr) {
+                                        setOutput({ ...output, error: data.run.stderr, output: <></> });
+                              } else if (data?.run?.output) {
+                                        setOutput({
+                                                  ...output,
+                                                  output: data?.compile?.output || data?.compile?.stderr ?
+                                                            <>
+                                                                      {data.run.output} <br /> <br />
+                                                                      <span className="text-red-500">
+                                                                                Error: ${data.compile.output}
+                                                                      </span>
+                                                            </> : data.run.output,
+                                                  error: ''
+                                        });
                               } else {
-                                        setOutput('');
-                                        setError(output);
-                                        setIsLoading(false);
+                                        setOutput({ ...output, error: 'Error compiling code or no output found' });
                               }
+
                     } catch (error) {
-                              console.error('Error compiling code:', error);
-                              setError('Error compiling code');
-                              setIsLoading(false);
+                              setOutput({ ...output, error: 'Error compiling code or no output found' });
                     }
           };
 
@@ -102,17 +112,15 @@ export default function Execute() {
                                                             <Link href='/' className={buttonVariants({ size: "sm" })}>
                                                                       <HiOutlineArrowNarrowLeft /> Back
                                                             </Link>
-                                                            <Button size="sm" loading={isLoading} disabled={!code} onClick={compileCode}>
-                                                                      {isLoading ? 'Compiling...' : <>Compile <GoCodescan /></>}
+                                                            <Button size="sm" loading={output.isLoading} disabled={!code || output.isLoading} onClick={compileCode}>
+                                                                      {output.isLoading ? 'Compiling...' : <>Compile <GoCodescan /></>}
                                                             </Button>
                                                             {
-                                                                      output || error ? (
+                                                                      output.output || output.error ? (
                                                                                 <Button
                                                                                           size='sm'
                                                                                           onClick={() => {
-                                                                                                    setCode('');
-                                                                                                    setOutput('');
-                                                                                                    setError('');
+                                                                                                    setOutput({ output: '', error: '', isLoading: false });
                                                                                           }}
                                                                                 >
                                                                                           <RxReset size={15} />
@@ -121,21 +129,18 @@ export default function Execute() {
                                                             }
                                                   </div>
                                                   {
-                                                            output || error ? (
+                                                            output.output || output.error ? (
                                                                       <>
                                                                                 <h2 className='mb-5 mt-10 font-bold text-xl md:text-2xl'>Output:</h2>
-                                                                                {output && <Textarea
-                                                                                          readOnly
-                                                                                          value={output}
-                                                                                          placeholder="Output will appear here..."
-                                                                                          className={`p-4 text-base md:text-lg bg-transparent resize-none w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none`}
-                                                                                />}
-                                                                                {error && <Textarea
-                                                                                          readOnly
-                                                                                          value={error}
-                                                                                          placeholder="Error will appear here..."
-                                                                                          className={`p-4 text-base md:text-lg bg-transparent resize-none w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none border border-red-500 text-red-500`}
-                                                                                />}
+                                                                                {output.output &&
+                                                                                          <div className={cn(
+                                                                                                    "p-4 text-base md:text-lg bg-transparent w-full h-96 rounded-md focus-visible:ring-0 cursor-default select-none border overflow-auto",
+                                                                                                    output.error ? 'border-red-500 text-red-500' : ''
+                                                                                          )}>
+                                                                                                    {output.output && <pre>{output.output}</pre>}
+                                                                                                    {output.error && <pre>{output.error}</pre>}
+                                                                                          </div>
+                                                                                }
                                                                       </>
                                                             ) : null
                                                   }
